@@ -1,0 +1,133 @@
+<html>
+
+    <head>
+
+        <title>Javascript Project</title>
+
+        <style type="text/css">
+
+        body {
+
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        }
+   
+            #shape {
+
+                width:200px;
+                height:200px;
+                background-color:purple;
+                display:none;
+                position:relative;
+
+            }
+    
+        
+        </style>
+
+
+    </head>
+
+    <body>
+
+        <h1>Test Your Reaction Speed!</h1>
+
+        <p>Click on the Boxes and Circles as fast as you can and try to beat your previous score.</p>
+
+            <p>Time Taken is: <span id="timeTaken"></span></p>
+
+    <div id="shape"></div>
+
+    
+
+
+    <script type="text/javascript">
+
+        var start = new Date().getTime();
+
+
+        function getRandomColor() {
+
+            var letters = "0123456789ABCDEF".split("");
+
+            var color = "#";
+
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)]
+            }
+
+            return color;
+
+        }
+
+
+       function makeShapeAppear() {
+
+            var top = Math.random() * 400;
+
+            var left = Math.random() * 400;
+
+            var width = (Math.random() * 200) + 100;
+
+            if (Math.random() > 0.5) {
+
+                document.getElementById("shape").style.borderRadius = "50%";
+            } else {
+
+                document.getElementById("shape").style.borderRadius = "0";
+
+            }
+            
+            document.getElementById("shape").style.backgroundColor = getRandomColor();
+
+            document.getElementById("shape").style.width = width + "px";
+
+            document.getElementById("shape").style.height = width + "px";
+
+            document.getElementById("shape").style.top = top + "px";
+
+            document.getElementById("shape").style.left = left + "px";
+
+            document.getElementById("shape").style.display = "block";
+        
+            start = new Date().getTime();
+
+            
+        }
+
+        function appearAfterDelay() {
+
+            setTimeout(makeShapeAppear, Math.random() * 1000);            
+        }
+
+        appearAfterDelay();
+
+        document.getElementById("shape").onclick = function () {
+
+            document.getElementById("shape").style.display = "none";
+
+            var end = new Date().getTime();
+
+            var timeTaken = (end - start) / 800;
+
+            document.getElementById("timeTaken").innerHTML = timeTaken + "s";
+
+            appearAfterDelay();
+        }
+
+/* to store in a seperate file use;
+
+save the files as Project.js
+
+link it at the end by alowing the browser to load the page before doing Javascript.
+
+<script type"text/javascript" src="..file location..">< /script>
+
+*/
+        </script>
+
+
+    </body>
+
+
+</html>
